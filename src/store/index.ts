@@ -1,15 +1,30 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Item from './Item/index';
+import actions from './actions';
+import {state} from './state';
+import getters from './getters';
+import mutations from './mutations';
 
-Vue.use(Vuex)
+export { StoreNamespaces } from '@/store/namespaces';
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+Vue.use(Vuex);
+
+export class RootState {
+}
+
+const modules = {
+Item,
+};
+
+const store = new Vuex.Store({
+  modules,
+  actions,
+  state,
+  getters,
+  mutations,
+});
+
+Object.assign(window, { $store: store });
+
+export default store;
