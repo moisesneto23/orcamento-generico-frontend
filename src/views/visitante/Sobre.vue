@@ -1,6 +1,6 @@
 <template>
     <div >
-
+ <v-btn @click="muda()">muda</v-btn>
         <h1> Sobre </h1>
     </div>
 </template>
@@ -13,6 +13,9 @@ import { Vue, Component } from "vue-property-decorator";
   }
 })
 export default class Sobre extends Vue {
-
+public muda(){
+  localStorage.setItem("ocirenegotnemacro",'kdhfsdhfsh');
+  this.$router.push('/')
+}
 }
 </script>

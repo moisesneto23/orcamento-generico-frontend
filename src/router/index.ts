@@ -1,4 +1,6 @@
 import Vue from "vue";
+import beforeEnter from "./beforeEnter";
+import beforeEach from './beaforeEach';
 import VueRouter, { RouteConfig } from "vue-router";
 import CadastroUsuario from "../views/visitante/CadastroUsuario.vue";
 import Sobre from "../views/visitante/Sobre.vue";
@@ -42,15 +44,13 @@ const routes: Array<RouteConfig> = [
         name: "CadastroOrcamento",
         component: () => import("../views/CadastroOrcamentos.vue"),
       },
-
-    ]
+    ],
+    beforeEnter,
   },
-
 ];
-
 const router = new VueRouter({
   mode: "history",
   routes,
 });
-
+//router.beforeEach(beforeEach);
 export default router;

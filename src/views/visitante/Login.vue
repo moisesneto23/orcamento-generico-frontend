@@ -1,7 +1,7 @@
 <template>
 <div>
  <h1>login</h1>
-    <visitante></visitante>
+   <v-btn @click="muda()">muda</v-btn>
 </div>
    
 </template>
@@ -16,7 +16,10 @@ import Navegacao from '@/components/visitante/Navegacao.vue'
 export default class Login extends Vue {
   public drawer = false;
   private group = null;
-
+public muda(){
+  localStorage.setItem("ocirenegotnemacro",'kdhfsdhfsh');
+  this.$router.push('/')
+}
   
 
 }
