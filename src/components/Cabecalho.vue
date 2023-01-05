@@ -20,7 +20,7 @@
             </v-list-item-content>
           </v-list-item>
 
-             <v-list-item :to="'/quemsomos'">
+             <v-list-item :to="'/realizaOrcamento'">
             <v-list-item-icon>
               <v-icon >mdi-calculator</v-icon>
             </v-list-item-icon>

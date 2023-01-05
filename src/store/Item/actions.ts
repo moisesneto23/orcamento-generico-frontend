@@ -1,10 +1,11 @@
+import  ItemModel  from '@/Model/ItemModel';
 import { ActionTree } from 'vuex';
 import { ItemState } from './state';
 import { RootState } from '@/store';
-import { ResumoMutationTypes } from './mutations';
+import { ItemMutationTypes } from './mutations';
 import { Container } from 'typescript-ioc';
-import { ResumoService } from '@/services/resumo/ResumoService';
-import { Turma } from '@/model/Turma';
+import  ItemService  from '@/Service/Selecao/ItemService';
+
 
 export enum ResumoActionTypes {
   OBTER_RESUMO = 'OBTER_RESUMO',
@@ -16,7 +17,7 @@ export enum ResumoActionTypes {
 
 const actions: ActionTree<ItemState, RootState> = {
 
-  async [ResumoActionTypes.OBTER_RESUMO]({ commit }, codigoDoAluno: number) {
+ /* async [ResumoActionTypes.OBTER_RESUMO]({ commit }, codigoDoAluno: number) {
     const service = (Container.get(ResumoService) as ResumoService);
 
     const disciplinas = await service.obterResumo(codigoDoAluno);
@@ -33,7 +34,7 @@ const actions: ActionTree<ItemState, RootState> = {
 
   async [ResumoActionTypes.SETAR_TURMA_SELECIONADA]({ commit }, turmaSelecionada: Turma) {
     commit(ResumoMutationTypes.SET_TURMA_SELECIONADA, turmaSelecionada);
-  },
+  },*/
 };
 
 export default actions;
