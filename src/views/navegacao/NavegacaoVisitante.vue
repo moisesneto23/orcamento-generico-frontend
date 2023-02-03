@@ -1,10 +1,8 @@
 <template>
 <nav>
-    <h1>visitante</h1>
- 
-     <span> <router-link :to="Login"> Login</router-link> </span>
-      <span> <router-link :to="CadastroEmpresa"> cadastro</router-link> </span>
-       <span><router-link :to="Sobre"> sobre</router-link></span>
+     <span> <v-btn text> <router-link  :to="Login"> Login</router-link></v-btn> </span>
+      <span> <v-btn text> <router-link :to="CadastroEmpresa"> cadastro</router-link> </v-btn> </span>
+       <span> <v-btn text> <router-link :to="Sobre"> sobre</router-link> </v-btn> </span>
 
     </nav>
 </template>

@@ -1,6 +1,5 @@
 <template>
     <div >
- <v-btn @click="muda()">muda</v-btn>
         <h1> Sobre </h1>
     </div>
 </template>
@@ -14,9 +13,6 @@ import Rotas from '@/router/Rotas';
   }
 })
 export default class Sobre extends Vue {
-public muda(){
-  localStorage.setItem("ocirenegotnemacro",'kdhfsdhfsh');
-  this.$router.push(Rotas.Inicio)
-}
+
 }
 </script>

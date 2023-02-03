@@ -8,9 +8,7 @@ export enum GlobalGetterTypes {
 
 const getters: GetterTree<GlobalState, RootState> = {
 
-  [GlobalGetterTypes.OBTENDO_INFORMACOES](state) {
-    return state.obtendoInformacoes;
-  },
+
 };
 
 export default getters;
