@@ -6,5 +6,6 @@ export enum Dimencao{
     PerimetroComprimentoAltura = 5,
     AreaLarguraAltura = 6,
     AreaLarguraComprimento = 7,
-    Volume = 8,
+    AreaAlturaComprimento = 8,
+    Volume = 9,
 }

@@ -11,7 +11,7 @@
       <v-list>
         <v-list-item-group v-model="group">
 
-          <v-list-item :to="'/'">
+          <v-list-item :to="Inicio">
             <v-list-item-icon>
               <v-icon >mdi-home</v-icon>
             </v-list-item-icon>
@@ -20,7 +20,7 @@
             </v-list-item-content>
           </v-list-item>
 
-             <v-list-item :to="'/realizaOrcamento'">
+             <v-list-item :to="RealizaOrcamento">
             <v-list-item-icon>
               <v-icon >mdi-calculator</v-icon>
             </v-list-item-icon>
@@ -29,16 +29,16 @@
             </v-list-item-content>
           </v-list-item>
 
-           <v-list-item :to="'/cadastroOrcamento'">
+           <v-list-item :to="cadastroItens">
             <v-list-item-icon>
               <v-icon >mdi-shape-plus</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>Cadastro Produtos</v-list-item-title>
+              <v-list-item-title>Cadastro Itens</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item :to="'/quemsomos'">
+          <v-list-item :to="Ajuda">
             <v-list-item-icon>
               <v-icon >mdi-help</v-icon>
             </v-list-item-icon>
@@ -54,10 +54,12 @@
 </template>
 
 <script lang='ts'>
+import Rotas from '@/router/Rotas';
 import { Vue, Component } from "vue-property-decorator";
 import EmpresaModel from "@/Model/Empresa/EmpresaModel";
 import EmpresaService from "@/Service/EmpresaService";
 import { Inject } from "typescript-ioc";
+
 @Component({
   components:{
 
@@ -66,13 +68,21 @@ import { Inject } from "typescript-ioc";
 export default class Cabecalho extends Vue {
   public drawer = false;
   private group = null;
-
+  private cadastroItens = Rotas.Cadastros.CadastroItens;
   public Empresas: EmpresaModel[] = [];
   @Inject
   public empresaService!: EmpresaService;
   public async buscaEmpresas() {
     this.Empresas = await this.empresaService.obterTodasEmpresas();
   }
+
+  private Inicio = Rotas.Inicio;
+  private CadastroItens = Rotas.Cadastros.CadastroItens;
+  private Ajuda = Rotas.Ajuda;
+  private RealizaOrcamento = Rotas.Cadastros.RealizaOrcamento;
+
+
+
 }
 </script>
 

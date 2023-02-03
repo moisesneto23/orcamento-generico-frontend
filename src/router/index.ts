@@ -21,8 +21,8 @@ const routes: Array<RouteConfig> = [
         component: Login,
       },
       {
-        path: "/cadastro-usuario",
-        name: "CadastroUsuario",
+        path: "/cadastro-empresa",
+        name: "CadastroEmpresa",
         component: CadastroUsuario,
       },
       {
@@ -35,14 +35,14 @@ const routes: Array<RouteConfig> = [
 
   {
     path: "/",
-    name: "Home",
-    component: () => import("../views/Inicio.vue"),
+    name: "Inicio",
+    component: () => import("../views/navegacao/NavegacaoInicio.vue"),
     children: 
     [
       {
-        path: "/cadastroOrcamento",
-        name: "CadastroOrcamento",
-        component: () => import("../views/CadastroOrcamentos.vue"),
+        path: "/cadastro/itens",
+        name: "CadastroItens",
+        component: () => import("@/views/navegacao/Inicio/CadastroItens.vue"),
       },
     ],
     beforeEnter,

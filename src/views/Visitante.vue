@@ -6,7 +6,7 @@
 </template>
 <script lang='ts'>
 import { Vue, Component } from "vue-property-decorator";
-import Navegacao from '@/components/visitante/Navegacao.vue'
+import Navegacao from '@/views/navegacao/NavegacaoVisitante.vue'
 @Component({
   components:{
     Navegacao,

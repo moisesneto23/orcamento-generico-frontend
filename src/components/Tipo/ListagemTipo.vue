@@ -39,7 +39,7 @@ export default class ListagemTipo extends Vue {
     this.tipos = await this.buscarTodosTipos();
   }
   private async buscarTodosTipos(): Promise<any>{
-    return this._tipoService.obterTodasEmpresas();
+    return ;//this._tipoService.obterTodasEmpresas();
   }
    public excluirTipo(id:number){
         this._tipoService.delete(id).then(()=>{
