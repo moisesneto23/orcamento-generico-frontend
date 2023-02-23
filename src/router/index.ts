@@ -52,5 +52,5 @@ const router = new VueRouter({
   mode: "history",
   routes,
 });
-//router.beforeEach(beforeEach);
+router.beforeEach(beforeEach);
 export default router;

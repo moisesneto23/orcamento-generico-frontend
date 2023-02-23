@@ -18,7 +18,8 @@ export default async (to: any, from: any, next: any) => {
 var autenticado = estaAutenticado();
 
 async function estaAutenticado(): Promise<boolean> {
-    if (localStorage.getItem("ocirenegotnemacro") !== undefined ) {
+  let autenticacao = localStorage.getItem("ocirenegotnemacro");
+    if (autenticacao !== undefined ) {
       return true;
     } else {
       return false;

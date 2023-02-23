@@ -1,13 +1,13 @@
 import store from '@/store';
 
 export default (config: any) => {
-    const token = (store.state as any).auth.access_token;
+    const token = ( localStorage.getItem("ocirenegotnemacro")as any);
     if (
         !config.headers.Authorization &&
         token &&
         config.url.indexOf('token') === -1
     ) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = token;
     }
 
     return config;

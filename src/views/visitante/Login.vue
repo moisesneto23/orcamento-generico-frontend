@@ -59,16 +59,20 @@ export default class Loginin extends Vue {
 @Action(GlobalActionTypes.FAZER_LOGIN)
 public fazLogin!: (login:Login)=> Promise<void>;
 
-public async fazerLogin(){
-    this.carregando= true;
-    const login = new Login(this.email, this.senha)
-    await this.fazLogin(login).then(()=>{
+public  fazerLogin(){
+  try{
+      this.carregando= true;
+      const login = new Login(this.email, this.senha);
+      this.fazLogin(login) 
+    }
+  finally{
       this.carregando =false;
       this.$router.push(Rotas.Inicio);
-    });
-}
+    }
+};
+
   public muda() {
-    localStorage.setItem("ocirenegotnemacro", "kdhfsdhfsh");
+    localStorage.setItem("ocirenegotnema", "kdhfsdhfsh");
     this.$router.push(Rotas.Inicio);
   }
 

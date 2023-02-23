@@ -7,9 +7,9 @@ export default class TipoService {
     @Inject
     private _tipoRepository!: TipoRepository;
 
-    public async obterTodosTipos(): Promise<TipoModel[]> {
+    /*public async obterTodosTipos(): Promise<TipoModel[]> {
         return await this._tipoRepository.obterTodosTipos();
-    }
+    }*/
 
     public async salvarTipo(Tipo:TipoModel): Promise<any> {
          await this._tipoRepository.salvarTipo(Tipo);

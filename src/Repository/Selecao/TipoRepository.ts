@@ -2,31 +2,27 @@ import  HttpAxios  from '@/axios/AppHttpAxios';
 import TipoModel from '@/Model/Selecao/TipoModel';
 import { Inject } from 'typescript-ioc';
 
-export class TipoRepository {
-    
-   
+export class TipoRepository {  
     @Inject
     private $http!: HttpAxios;
+    private baseURL = 'https://localhost:7068/api/Tipo/';
 
-    public async obterTodosTipos(): Promise<TipoModel[]> {
-
-        const result = await this.$http.get(`https://localhost:7115/api/Tipo/empresa/${13}`);
+    public async obterTodosTipos(id: number): Promise<TipoModel[]> {
+        const result = await this.$http.get(this.baseURL+`empresa/${id}`);
         return result.data;
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-
-        const url = 'https://localhost:7115/api/Tipo';
-        const result = await this.$http.post(url, Tipo);
+        const result = await this.$http.post(this.baseURL, Tipo);
     }
 
-    public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {
-        const url = 'https://localhost:7115/api/Tipo';
-        const result = await this.$http.patch(url, Tipo);
+    public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
+        const result = await this.$http.patch(this.baseURL, Tipo);
         return result.data;
     }
+
     public async delete(id: any) : Promise<any>{
-        const url =`https://localhost:7115/api/Tipo/${id}`;
+        const url = this.baseURL+`${id}`;
         await this.$http.delete(url);
     }
 }

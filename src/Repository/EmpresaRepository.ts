@@ -9,10 +9,10 @@ export class EmpresaRepository {
     
     @Inject
     private $http!: HttpAxios;
-
-    public async obterEmpresas(): Promise<EmpresaModel[]> {
-
-        const result = await this.$http.get('https://localhost:7115/api/Empresa');
+    private baseURL = 'https://localhost:7068/api/';
+    
+    public async obterEmpresas(): Promise<EmpresaModel[]> { 
+        const result = await this.$http.get(this.baseURL+'Empresa');
         return result.data;
     }
 

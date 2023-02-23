@@ -19,7 +19,7 @@ export enum GlobalActionTypes {
 const actions: ActionTree<GlobalState, RootState> = {
 
 
-  async [GlobalActionTypes.FAZER_LOGIN]({ commit }, login: Login) {
+  async [GlobalActionTypes.FAZER_LOGIN]({ commit }, login: Login): Promise<any> {
     const service = (Container.get(EmpresaService) as EmpresaService);
     const informacoesEmpresa = await service.obterInformacoesEmpresa(login);
     localStorage.setItem("ocirenegotnemacro", informacoesEmpresa.token);
