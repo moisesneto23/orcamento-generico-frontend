@@ -56,19 +56,20 @@ export default class Loginin extends Vue {
   private group = null;
   private carregando =false;
   private show1= false;
-@Action(GlobalActionTypes.FAZER_LOGIN)
-public fazLogin!: (login:Login)=> Promise<void>;
+  
+@Action('FAZER_LOGIN') // nao esta funcionado com: --GlobalActionTypes.FAZER_LOGIN
+private fazLogin!: (login:Login)=> Promise<void>;
 
-public  fazerLogin(){
-  try{
+public async fazerLogin(){
+
       this.carregando= true;
       const login = new Login(this.email, this.senha);
-      this.fazLogin(login) 
-    }
-  finally{
-      this.carregando =false;
-      this.$router.push(Rotas.Inicio);
-    }
+      await this.fazLogin(login).then(()=>{
+        this.carregando =false;
+        this.$router.push(Rotas.Inicio);
+      }).catch((x)=>console.log(x));
+ 
+      
 };
 
   public muda() {
