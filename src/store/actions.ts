@@ -14,22 +14,17 @@ import Login from '@/Model/Login';
 
 export enum GlobalActionTypes {
   FAZER_LOGIN = "FAZER_LOGIN",
-  algo = 'algo'
 }
 
 const actions: ActionTree<GlobalState, RootState> = {
 
 
-  async [GlobalActionTypes.FAZER_LOGIN]({ commit }, login: Login): Promise<void> {
+  async [GlobalActionTypes.FAZER_LOGIN]({ commit }, login: Login): Promise<any> {
     debugger;
     const service = (Container.get(EmpresaService) as EmpresaService);
-    await service.obterInformacoesEmpresa(login).then((d)=>{
-      localStorage.setItem("ocirenegotnemacro", d.token);
-      commit(GlobalMutationTypes.SET_FAZER_LOGIN, "d");
-      console.log("tudo Ok")
-    });
-    
-    
+    const data = await service.obterInformacoesEmpresa(login);
+    localStorage.setItem("ocirenegotnemacro", data.token);
+    commit(GlobalMutationTypes.SET_FAZER_LOGIN, data); 
   },
 };
 

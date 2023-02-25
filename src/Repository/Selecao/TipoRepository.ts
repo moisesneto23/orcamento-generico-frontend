@@ -1,10 +1,10 @@
-import  HttpAxios  from '@/axios/AppHttpAxios';
+import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
 import TipoModel from '@/Model/Selecao/TipoModel';
 import { Inject } from 'typescript-ioc';
 
 export class TipoRepository {  
     @Inject
-    private $http!: HttpAxios;
+    private $http!: AppHttpAxios;
     private baseURL = 'https://localhost:7068/api/Tipo/';
 
     public async obterTodosTipos(id: number): Promise<TipoModel[]> {

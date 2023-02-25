@@ -65,9 +65,9 @@ public async fazerLogin(){
       this.carregando= true;
       const login = new Login(this.email, this.senha);
       await this.fazLogin(login).then(()=>{
-        this.carregando =false;
+        //this.carregando =false;
         this.$router.push(Rotas.Inicio);
-      }).catch((x)=>console.log(x));
+      });
  
       
 };

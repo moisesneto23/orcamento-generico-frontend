@@ -1,10 +1,11 @@
+import  Response  from '@/axios/response';
 import router from '@/router';
 import store from '@/store';
 import _vue from 'vue';
 import ErroModel from '@/model/ErroModel';
 
 export default (error: any) => {
-  if (error.response) {
+  if (error.Response) {
     const erro = error.response.data.error as ErroModel;
     if (error.response.status === 401) {
       store.dispatch('auth/signOutOidc');

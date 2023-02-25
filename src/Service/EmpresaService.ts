@@ -2,9 +2,11 @@ import  Login  from '@/Model/Login';
 import  InformacoesEmpresa  from '@/Model/InformacoesEmpresa';
 import {EmpresaRepository} from '@/Repository/EmpresaRepository';
 import EmpresaModel from '@/Model/Empresa/EmpresaModel';
-import { Inject } from 'typescript-ioc';
+import { Container,Inject } from 'typescript-ioc';
+import { AxiosResponse } from 'axios';
 
 export default class EmpresaService {
+
     @Inject
     private empresa!: EmpresaRepository;
 
