@@ -25,6 +25,7 @@ export enum ItensActionTypes {
 const actions: ActionTree<ItemState, RootState> = {
 
   async [ItensActionTypes.OBTER_CATEGORIAS_ITEM]({ commit }) {
+    debugger
     const service = (Container.get(CategoriaService) as CategoriaService);
     const categorias = await service.obterTodasCategorias();
     commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);

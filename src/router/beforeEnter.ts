@@ -1,5 +1,4 @@
 export default async (to: any, from: any, next: any) => {
-  debugger;
     if ( estaAutenticado()) {
         next(true);
       }else{

@@ -19,39 +19,40 @@
   </v-expansion-panels>
 </template>
 <script lang="ts">
-import { Inject } from 'typescript-ioc';
 import { Vue, Component } from "vue-property-decorator";
-import CategoriaService from '@/Service/Selecao/CategoriaService';
 import CategoriaModel from '@/Model/Selecao/CategoriaModel';
 import EdicaoCategoria from '@/components/Categoria/EditacaoCategoria.vue';
-import CategoriaRequest from '@/Model/Request/CategoriaRequest'
+import { ItensActionTypes } from '@/store/Item/actions';
+import { StoreNamespaces } from '@/store';
+import { namespace } from 'vuex-class';
+
+const item = namespace(StoreNamespaces.ITEM);
 @Component({
   components: {
     EdicaoCategoria,
   }
 })
 export default class ListagemCategoria extends Vue {
- 
- public categorias: CategoriaModel[] = [];
-  @Inject
-  public _categoriaService!: CategoriaService;
+
+ @item.State
+ private categorias!: CategoriaModel[];
   
+  @item.Action(ItensActionTypes.OBTER_CATEGORIAS_ITEM)
+  public obterTodasCategoriasItem!:() => Promise<any>;
+   
+  @item.Action(ItensActionTypes.REMOVER_CATEGORIA_ITEM)
+  public removerCategoriaItem!:(id: number) => Promise<any>;
+
   public mounted(){
-    this.obterCategorias();
+    this.obterTodasCategoriasItem();
   }
 
-  public async obterCategorias() {
-    this.categorias = await this._categoriaService.obterTodasEmpresas();
-  }
   public alteracaoCategoria(categoria: CategoriaModel){
     this.categorias.filter(x=>x.id===categoria.id).map(c=>c =categoria);
   }
 
       public excluirCategoria(id:number){
-        this._categoriaService.delete(id).then(()=>{
-          this.obterCategorias();
-        });
- 
+       this.removerCategoriaItem(id);
       }
 }
 </script>

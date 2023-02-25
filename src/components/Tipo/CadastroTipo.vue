@@ -78,7 +78,7 @@ export default class CadastroTipo extends Vue {
   }
 
   public async obterCategorias() {
-    this.categorias = await this._categoriaService.obterTodasEmpresas();
+    this.categorias = await this._categoriaService.obterTodasCategorias();
   }
 
   public adicionarTipo(){

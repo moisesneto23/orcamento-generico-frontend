@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Item from './Item/index';
+import item from './Item/index';
 import actions from './actions';
 import {state} from './state';
 import getters from './getters';
@@ -14,7 +14,7 @@ export class RootState {
 }
 
 const modules = {
-Item,
+item,
 };
 
 const store = new Vuex.Store({

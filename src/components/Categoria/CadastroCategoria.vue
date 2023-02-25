@@ -44,21 +44,31 @@
 
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
 import CategoriaService from '@/Service/Selecao/CategoriaService';
+import CategoriaRequest from '@/Model/Request/CategoriaRequest';
 import { Inject } from "typescript-ioc";
 import CategoriaModel from "@/Model/Selecao/CategoriaModel";
+import { Vue, Component } from "vue-property-decorator";
+import { ItensActionTypes } from '@/store/Item/actions';
+import { StoreNamespaces } from '@/store';
+import { namespace } from 'vuex-class';
 
+const item = namespace(StoreNamespaces.ITEM);
 @Component({})
 export default class CadastroCategoria extends Vue {
-  @Inject
-  private _categoria!: CategoriaService;
+
+    @item.Action(ItensActionTypes.SALVAR_CATEGORIA_ITEM)
+  public salvarCategoriaItem!:(categoria : CategoriaModel) => Promise<any>;
+
+  public dialog = false;
+ 
   private categoria = new CategoriaModel();
 
   public async adicionarCategoria(){
-    this._categoria.salvarCategoria(this.categoria).then(()=>{
-      this.$emit('atualizar-categoria-item');
+
+    await this.salvarCategoriaItem(this.categoria).then(()=>{
     });
+    this.dialog = false;
   }
 
 }
