@@ -1,28 +1,29 @@
 import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
 import TipoModel from '@/Model/Selecao/TipoModel';
+import store from '@/store';
 import { Inject } from 'typescript-ioc';
 
-export class TipoRepository {  
+export class TipoRepository {
     @Inject
     private $http!: AppHttpAxios;
-    private baseURL = 'https://localhost:7068/api/Tipo/';
+    private informacoesEmpresa = (store.state.informacoesEmpresa as any);
 
-    public async obterTodosTipos(id: number): Promise<TipoModel[]> {
-        const result = await this.$http.get(this.baseURL+`empresa/${id}`);
+    public async obterTodosTipos(): Promise<TipoModel[]> {
+        const result = await this.$http.get(`empresa/${this.informacoesEmpresa.empresaModel.id}`);
         return result.data;
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-        const result = await this.$http.post(this.baseURL, Tipo);
+        const result = await this.$http.post('tipo', Tipo);
     }
 
     public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
-        const result = await this.$http.patch(this.baseURL, Tipo);
+        const result = await this.$http.patch('tipo', Tipo);
         return result.data;
     }
 
     public async delete(id: any) : Promise<any>{
-        const url = this.baseURL+`${id}`;
+        const url = 'tipo'+`${id}`;
         await this.$http.delete(url);
     }
 }

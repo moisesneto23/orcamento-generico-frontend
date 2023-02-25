@@ -25,18 +25,31 @@ import TipoModel from "@/Model/Selecao/TipoModel";
 import TipoService from "@/Service/Selecao/TipoService";
 import { Inject } from "typescript-ioc";
 import EdicaoTipo from '@/components/Itens/Tipo/EdicaoTipo.vue'
+import { StoreNamespaces } from "@/store";
+import { ItensActionTypes } from "@/store/Item/actions";
+import { namespace } from "vuex-class";
 
+const item = namespace(StoreNamespaces.ITEM);
 @Component({
   components:{
     EdicaoTipo,
   }
 })
 export default class ListagemTipo extends Vue {
+  
+  @item.Action(ItensActionTypes.OBTER_TIPOS_ITEM)
+  public obterTodostipoItem!:() => Promise<any>;
+
+  @item.Action(ItensActionTypes.REMOVER_TIPO_ITEM)
+  public removerTipoItem!:(id: number) => Promise<any>;
+
+
   @Inject
   public _tipoService!: TipoService;
   public tipos: TipoModel[] = [];
   public async mounted(){
-    this.tipos = await this.buscarTodosTipos();
+    //this.tipos = await this.buscarTodosTipos();
+    this.obterTodostipoItem();
   }
   private async buscarTodosTipos(): Promise<any>{
     return ;//this._tipoService.obterTodasEmpresas();

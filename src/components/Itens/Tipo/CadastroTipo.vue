@@ -20,12 +20,15 @@
 
                 <v-col cols="12" sm="6">
                   <v-select
-                    :items="categorias"
-                    label="Escolha uma Categoria*"
-                    required
-                    item-value="id"
-                    item-text="nome"
-                    v-model="tipo.categoria_id"
+                   v-model="select"
+   
+    :items="descricaoCategorias"
+    :item-title="descricaoCategorias"
+    item-value="id"
+    label="selecione"
+    persistent-hint
+    return-object
+    single-line
                   ></v-select>
                 </v-col>
                
@@ -35,7 +38,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn dark  @click="adicionarTipo()" class="mt-8">
+            <v-btn dark  @click="selecuinaIdSelect(), adicionarTipo()" class="mt-8">
               Salvar
             </v-btn>
             <v-btn color="blue" text @click="dialogTipo = false">
@@ -56,37 +59,50 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import CategoriaService from '@/Service/Selecao/CategoriaService';
 import CategoriaModel from '@/Model/Selecao/CategoriaModel';
 import TipoModel from "@/Model/Selecao/TipoModel";
 import TipoService from "@/Service/Selecao/TipoService";
 import { Inject } from "typescript-ioc";
+import { StoreNamespaces } from "@/store";
+import { namespace } from "vuex-class";
+import { ItensActionTypes } from "@/store/Item/actions";
 
+const item = namespace(StoreNamespaces.ITEM);
 @Component({})
 export default class CadastroTipo extends Vue {
     @Inject
   public _tipoService!: TipoService;
   public tipo= new TipoModel();
   public dialogTipo = false;
+public select = '';
+private idSelect?: number;
+public selecuinaIdSelect(){
+  this.idSelect = this.categorias.find(x=>x.descricao == this.select)?.id;
+}
 
-  public categorias: CategoriaModel[] = [];
-  @Inject
-  public _categoriaService!: CategoriaService;
+@item.State
+ private categorias!: CategoriaModel[];
   
+ 
+
+   @item.Action(ItensActionTypes.SALVAR_TIPO_ITEM)
+  public salvarTipoItem!:(tipo: TipoModel) => Promise<any>;
+  
+  public get descricaoCategorias(){
+    return this.categorias.map((c)=>c.descricao);
+  }
   public mounted(){
-    this.obterCategorias();
+   
   }
 
-  public async obterCategorias() {
-    this.categorias = await this._categoriaService.obterTodasCategorias();
-  }
+
 
   public adicionarTipo(){
     this.dialogTipo = false;
-    this._tipoService.salvarTipo(this.tipo).then(()=>{
+    /*this._tipoService.salvarTipo(this.tipo).then(()=>{
        location. reload();
-    });
-   
+    });*/
+    this.salvarTipoItem(this.tipo);
   }
 }
 </script>

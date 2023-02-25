@@ -1,5 +1,5 @@
-import  TipoModel  from '@/Model/Selecao/TipoModel';
-import {TipoRepository} from '@/Repository/Selecao/TipoRepository';
+import  TipoModel  from '@/Model/';
+import {TipoRepository} from '@/Repository/Itens/TipoRepository';
 import { Inject } from 'typescript-ioc';
 
 export default class TipoService {
@@ -7,9 +7,9 @@ export default class TipoService {
     @Inject
     private _tipoRepository!: TipoRepository;
 
-    /*public async obterTodosTipos(): Promise<TipoModel[]> {
+    public async obterTodosTipos(): Promise<TipoModel[]> {
         return await this._tipoRepository.obterTodosTipos();
-    }*/
+    }
 
     public async salvarTipo(Tipo:TipoModel): Promise<any> {
          await this._tipoRepository.salvarTipo(Tipo);

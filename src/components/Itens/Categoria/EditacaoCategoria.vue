@@ -45,32 +45,29 @@
 <script lang="ts">
 import { Vue, Component,Prop } from "vue-property-decorator";
 import CategoriaModel from "@/Model/Selecao/CategoriaModel";
-import CategoriaService from "@/Service/Selecao/CategoriaService";
-import { Inject } from "typescript-ioc";
-import CategoriaRequest from '@/Model/Request/CategoriaRequest'
+import { namespace } from "vuex-class";
+import { StoreNamespaces } from "@/store";
+import { ItensActionTypes } from "@/store/Item/actions";
 
-
+const item = namespace(StoreNamespaces.ITEM);
 @Component({})
 export default class EdicaoCategoria extends Vue {
+
+  @item.Action(ItensActionTypes.EDITAR_CATEGORIA_ITEM)
+  public obterTodasCategoriasItem!:(categoria: CategoriaModel) => Promise<any>;
   public dialog = false;
-@Inject
-   public _categoriaService!: CategoriaService;
+
   @Prop()
   private categoria!: CategoriaModel;
   public get exibeCategoria(){
     return this.categoria;
   }
   public processarEdicao(categoria: CategoriaModel){
-    this.editarCategoria(categoria);
-    this.dialog = false;
+    this.obterTodasCategoriasItem(categoria).then(()=>{
+      this.dialog = false; 
+      this.$emit('categoriaAlterada',this.categoria);
+    });
+  }
 
-    
-    this.$emit('categoriaAlterada',this.categoria);
-  }
-  private async editarCategoria(categoria: CategoriaModel): Promise<any>{
-       await this._categoriaService.editarCategoria(categoria).then((cat)=>{
-        this.$emit('categoriaItem-atualizada',cat);
-       });
-  }
 }
 </script>

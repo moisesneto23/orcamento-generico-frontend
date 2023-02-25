@@ -1,6 +1,6 @@
 import  CategoriaRequest  from '@/Model/Request/CategoriaRequest';
 import  CategoriaModel  from '@/Model/Selecao/CategoriaModel';
-import {CategoriaRepository} from '@/Repository/Selecao/CategoriaRepository';
+import {CategoriaRepository} from '@/Repository/Itens/CategoriaRepository';
 import { Inject } from 'typescript-ioc';
 
 export default class CategoriaService {
