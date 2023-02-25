@@ -9,21 +9,21 @@ export class TipoRepository {
     private informacoesEmpresa = (store.state.informacoesEmpresa as any);
 
     public async obterTodosTipos(): Promise<TipoModel[]> {
-        const result = await this.$http.get(`empresa/${this.informacoesEmpresa.empresaModel.id}`);
+        const result = await this.$http.get(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`);
         return result.data;
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-        const result = await this.$http.post('tipo', Tipo);
+        const result = await this.$http.post('TipoItem', Tipo);
     }
 
     public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
-        const result = await this.$http.patch('tipo', Tipo);
+        const result = await this.$http.patch('TipoItem', Tipo);
         return result.data;
     }
 
     public async delete(id: any) : Promise<any>{
-        const url = 'tipo'+`${id}`;
+        const url = 'TipoItem/'+`${id}`;
         await this.$http.delete(url);
     }
 }

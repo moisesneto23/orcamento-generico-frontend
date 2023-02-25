@@ -13,7 +13,7 @@
                   <v-text-field
                     label="Nome da categoria*"
                     required
-                    v-model="tipo.nome"
+                    v-model="tipo.descricao"
                   ></v-text-field>
                 </v-col>
                 
@@ -45,16 +45,17 @@
 <script lang="ts">
 import { Vue, Component,Prop } from "vue-property-decorator";
 import TipoModel from "@/Model/Itens/TipoModel";
-import TipoService from "@/Service/Itens/TipoService";
-import { Inject } from "typescript-ioc";
+import { StoreNamespaces } from "@/store";
+import { namespace } from "vuex-class";
+import { ItensActionTypes } from "@/store/Item/actions";
 
-
+const item = namespace(StoreNamespaces.ITEM);
 
 @Component({})
 export default class EdicaoTipo extends Vue {
   public dialog = false;
-@Inject
-   public _categoriaService!: TipoService;
+ @item.Action(ItensActionTypes.EDITAR_TIPO_ITEM)
+  public editaTipoItem!:(tipo: TipoModel) => Promise<any>;
   @Prop()
   private tipo!: TipoModel;
   public get exibeCategoria(){
@@ -62,14 +63,13 @@ export default class EdicaoTipo extends Vue {
   }
   public processarEdicao(tipo: TipoModel){
 
-    this.editarCategoria(tipo);
+    this.editarTipoItem(tipo);
     this.dialog = false;
     this.$emit('tipoAlterada',this.tipo);
   }
 
-  private async editarCategoria(tipo: TipoModel): Promise<any>{
-       await this._categoriaService.editarTipo(tipo).then(()=>{
-                 location. reload();
+  private async editarTipoItem(tipo: TipoModel): Promise<any>{
+       await this.editaTipoItem(tipo).then(()=>{
         });
   }
 }

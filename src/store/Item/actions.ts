@@ -61,14 +61,29 @@ const actions: ActionTree<ItemState, RootState> = {
 
   async [ItensActionTypes.OBTER_TIPOS_ITEM]({ commit }) {
     const service = (Container.get(TipoService) as TipoService);
-    const categorias = await service.obterTodosTipos();
-    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+    const tipos = await service.obterTodosTipos();
+    commit(ItensMutationTypes.SET_TIPOS_ITEM, tipos);
   },
 
-  async [ItensActionTypes.OBTER_TIPOS_ITEM]({ commit }, tipo: TipoModel) {
+  async [ItensActionTypes.SALVAR_TIPO_ITEM]({ commit }, tipo: TipoModel) {
     const service = (Container.get(TipoService) as TipoService);
-    const categorias = await service.salvarTipo(tipo);
-    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+     await service.salvarTipo(tipo);
+     const categorias = await service.obterTodosTipos();
+    commit(ItensMutationTypes.SET_TIPOS_ITEM, categorias);
+  },
+
+  async [ItensActionTypes.EDITAR_TIPO_ITEM]({ commit }, tipo: TipoModel ) {
+    const service = (Container.get(TipoService) as TipoService);
+    await service.editarTipo(tipo);
+    const tipos = await service.obterTodosTipos();
+    commit(ItensMutationTypes.SET_TIPOS_ITEM, tipos);
+  },
+
+  async [ItensActionTypes.REMOVER_TIPO_ITEM]({ commit }, id: number) {
+    const service = (Container.get(TipoService) as TipoService);
+     await service.delete(id);
+     const tipos = await service.obterTodosTipos();
+    commit(ItensMutationTypes.SET_TIPOS_ITEM, tipos);
   },
 
 

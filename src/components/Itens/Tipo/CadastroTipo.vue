@@ -13,8 +13,8 @@
                   <v-text-field
                     label="Nome do Tipo*"
                     required
-                    item-value="nome"
-                    v-model="tipo.nome"
+                    item-value="descricao"
+                    v-model="tipo.descricao"
                   ></v-text-field>
                 </v-col>
 
@@ -83,7 +83,8 @@ public selecuinaIdSelect(){
 @item.State
  private categorias!: CategoriaModel[];
   
- 
+    @item.Action(ItensActionTypes.OBTER_CATEGORIAS_ITEM)
+  public obterTodasCategorias!:() => Promise<any>;
 
    @item.Action(ItensActionTypes.SALVAR_TIPO_ITEM)
   public salvarTipoItem!:(tipo: TipoModel) => Promise<any>;
@@ -91,8 +92,8 @@ public selecuinaIdSelect(){
   public get descricaoCategorias(){
     return this.categorias.map((c)=>c.descricao);
   }
-  public mounted(){
-   
+  public async  mounted(){
+   await this.obterTodasCategorias();
   }
 
 
@@ -102,6 +103,7 @@ public selecuinaIdSelect(){
     /*this._tipoService.salvarTipo(this.tipo).then(()=>{
        location. reload();
     });*/
+    this.tipo.categoriaItemId = this.idSelect || 0;
     this.salvarTipoItem(this.tipo);
   }
 }

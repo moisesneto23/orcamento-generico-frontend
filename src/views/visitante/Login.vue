@@ -57,7 +57,7 @@ export default class Loginin extends Vue {
   private carregando =false;
   private show1= false;
   
-@Action('FAZER_LOGIN') // nao esta funcionado com: --GlobalActionTypes.FAZER_LOGIN
+@Action(GlobalActionTypes.FAZER_LOGIN) // nao esta funcionado com: --GlobalActionTypes.FAZER_LOGIN
 private fazLogin!: (login:Login)=> Promise<void>;
 
 public async fazerLogin(){
