@@ -44,9 +44,6 @@
 
 
 <script lang="ts">
-import CategoriaService from '@/Service/Selecao/CategoriaService';
-import CategoriaRequest from '@/Model/Request/CategoriaRequest';
-import { Inject } from "typescript-ioc";
 import CategoriaModel from "@/Model/Selecao/CategoriaModel";
 import { Vue, Component } from "vue-property-decorator";
 import { ItensActionTypes } from '@/store/Item/actions';

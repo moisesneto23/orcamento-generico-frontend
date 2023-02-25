@@ -85,16 +85,16 @@ import { Vue, Component } from "vue-property-decorator";
 import EmpresaModel from "@/Model/Empresa/EmpresaModel";
 import EmpresaService from "@/Service/EmpresaService";
 import { Inject } from "typescript-ioc";
-import CadastroItemUnitario from '@/components/Item/dimencionalidades/CadastroItemUnitario.vue' ;
-import ListaUnidade from '@/components/Item/dimencionalidades/ListaUnidade.vue' ;
-import CadastroItemLinear from '@/components/Item/dimencionalidades/CadastroItemLinear.vue' ;
-import ListaLinear from '@/components/Item/dimencionalidades/ListaLinear.vue' ;
-import CadastroItemArea from '@/components/Item/dimencionalidades/CadastroItemArea.vue' ;
-import ListaArea from '@/components/Item/dimencionalidades/ListaArea.vue' ;
-import CadastroItemVolume from '@/components/Item/dimencionalidades/CadastroItemVolume.vue' ;
-import ListaVolume from '@/components/Item/dimencionalidades/ListaVolume.vue' ;
-import CadastroItemPerimetro from '@/components/Item/dimencionalidades/CadastroItemPerimetro.vue' ;
-import ListaPerimetro from '@/components/Item/dimencionalidades/ListaPerimetro.vue' ;
+import CadastroItemUnitario from '@/components/Itens/Item/dimencionalidades/CadastroItemUnitario.vue' ;
+import ListaUnidade from '@/components/Itens/Item/dimencionalidades/ListaUnidade.vue' ;
+import CadastroItemLinear from '@/components/Itens/Item/dimencionalidades/CadastroItemLinear.vue' ;
+import ListaLinear from '@/components/Itens/Item/dimencionalidades/ListaLinear.vue' ;
+import CadastroItemArea from '@/components/Itens/Item/dimencionalidades/CadastroItemArea.vue' ;
+import ListaArea from '@/components/Itens/Item/dimencionalidades/ListaArea.vue' ;
+import CadastroItemVolume from '@/components/Itens/Item/dimencionalidades/CadastroItemVolume.vue' ;
+import ListaVolume from '@/components/Itens/Item/dimencionalidades/ListaVolume.vue' ;
+import CadastroItemPerimetro from '@/components/Itens/Item/dimencionalidades/CadastroItemPerimetro.vue' ;
+import ListaPerimetro from '@/components/Itens/Item/dimencionalidades/ListaPerimetro.vue' ;
 
 @Component({
   components: {

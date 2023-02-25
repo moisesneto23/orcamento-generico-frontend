@@ -24,7 +24,7 @@ import { Vue, Component } from "vue-property-decorator";
 import TipoModel from "@/Model/Selecao/TipoModel";
 import TipoService from "@/Service/Selecao/TipoService";
 import { Inject } from "typescript-ioc";
-import EdicaoTipo from '@/components/Tipo/EdicaoTipo.vue'
+import EdicaoTipo from '@/components/Itens/Tipo/EdicaoTipo.vue'
 
 @Component({
   components:{

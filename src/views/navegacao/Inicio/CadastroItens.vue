@@ -57,11 +57,11 @@ import { Vue, Component } from "vue-property-decorator";
 import EmpresaModel from "@/Model/Empresa/EmpresaModel";
 import EmpresaService from "@/Service/EmpresaService";
 import { Inject } from "typescript-ioc";
-import CadastroCategoria from "@/components/Categoria/CadastroCategoria.vue";
-import CadastroTipo from '@/components/Tipo/CadastroTipo.vue';
-import ListagemCategoria from '@/components/Categoria/ListagemCategoria.vue'
-import ListagemTipo from '@/components/Tipo/ListagemTipo.vue'
-import ListagemItem from '@/components/Item/ListagemItem.vue';
+import CadastroCategoria from "@/components/Itens/Categoria/CadastroCategoria.vue";
+import CadastroTipo from '@/components/Itens/Tipo/CadastroTipo.vue';
+import ListagemCategoria from '@/components/Itens/Categoria/ListagemCategoria.vue'
+import ListagemTipo from '@/components/Itens/Tipo/ListagemTipo.vue'
+import ListagemItem from '@/components/Itens/Item/ListagemItem.vue';
 @Component({
   components: {
     CadastroCategoria,

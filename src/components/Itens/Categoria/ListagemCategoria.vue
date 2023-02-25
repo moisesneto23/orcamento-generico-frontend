@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import CategoriaModel from '@/Model/Selecao/CategoriaModel';
-import EdicaoCategoria from '@/components/Categoria/EditacaoCategoria.vue';
+import EdicaoCategoria from '@/components/Itens/Categoria/EditacaoCategoria.vue';
 import { ItensActionTypes } from '@/store/Item/actions';
 import { StoreNamespaces } from '@/store';
 import { namespace } from 'vuex-class';
