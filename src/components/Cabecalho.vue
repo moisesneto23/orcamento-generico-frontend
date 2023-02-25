@@ -50,6 +50,9 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+
+<v-btn @click="sair()">sair</v-btn>
+
   </div>
 </template>
 
@@ -67,19 +70,24 @@ import { Inject } from "typescript-ioc";
 })
 export default class Cabecalho extends Vue {
   public drawer = false;
-  private group = null;
-  private cadastroItens = Rotas.Cadastros.CadastroItens;
+  public group = null;
+  public cadastroItens = Rotas.Cadastros.CadastroItens;
   public Empresas: EmpresaModel[] = [];
   @Inject
   public empresaService!: EmpresaService;
   public async buscaEmpresas() {
     this.Empresas = await this.empresaService.obterTodasEmpresas();
   }
+  
+  public Inicio = Rotas.Inicio;
+  public CadastroItens = Rotas.Cadastros.CadastroItens;
+  public Ajuda = Rotas.Ajuda;
+  public RealizaOrcamento = Rotas.Cadastros.RealizaOrcamento;
 
-  private Inicio = Rotas.Inicio;
-  private CadastroItens = Rotas.Cadastros.CadastroItens;
-  private Ajuda = Rotas.Ajuda;
-  private RealizaOrcamento = Rotas.Cadastros.RealizaOrcamento;
+  public sair(){
+    localStorage.removeItem('ocirenegotnemacro');
+    this.$router.push(Rotas.Visitante.Login);
+  }
 
 
 

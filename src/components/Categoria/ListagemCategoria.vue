@@ -46,11 +46,10 @@ export default class ListagemCategoria extends Vue {
   public alteracaoCategoria(categoria: CategoriaModel){
     this.categorias.filter(x=>x.id===categoria.id).map(c=>c =categoria);
   }
-      private CategoraEdicao!: CategoriaModel;
 
       public excluirCategoria(id:number){
         this._categoriaService.delete(id).then(()=>{
-                 location. reload();
+          this.obterCategorias();
         });
  
       }

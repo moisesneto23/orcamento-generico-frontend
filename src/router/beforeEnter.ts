@@ -1,28 +1,25 @@
 export default async (to: any, from: any, next: any) => {
+  debugger;
     if (
-        (from.path === "/sobre" ||
+        /*(from.path === "/sobre" ||
         from.path === "/cadastro-usuario" ||
-        from.path === "/login") && await estaAutenticado() 
+        from.path === "/login") &&*/ await estaAutenticado() 
         
       ) {
-        console.log(estaAutenticado());
         next(true);
       }else{
-        console.log("jwt apagado no enter");
         localStorage.removeItem("ocirenegotnemacro");
         return next('/login'); 
       }
-        
     }
     
-var autenticado = estaAutenticado();
-
-async function estaAutenticado(): Promise<boolean> {
+var autenticado = false;
+function estaAutenticado(): boolean {
   let autenticacao = localStorage.getItem("ocirenegotnemacro");
-    if (autenticacao !== undefined ) {
+    if (autenticacao !== null ) {
       return true;
     } else {
-      return false;
+      return  false;
     }
   }
   

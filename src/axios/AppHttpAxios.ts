@@ -1,24 +1,7 @@
 import Axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios'
 import Request from '@/axios/request';
-import Response from '@/axios/response';
-import Error from '@/axios/error';
-
-/*type ValidInterceptor = 'request' | 'response' | 'error';
-
-const defaultInterceptors = {
-  request: (req: any) => req,
-  response: (res: any) => res,
-  error: (err: any) => Promise.reject(err),
-};
-
-function getAxiosInterceptor(type: ValidInterceptor) {
-  try {
-    const requiredInterceptor = require(`@axios/${type}`);
-    return requiredInterceptor.default;
-  } catch (error) {
-    return defaultInterceptors[type];
-  }
-}*/
+import router from '@/router';
+import Rotas from '@/router/Rotas';
 
 export class AppHttpAxios {
   public axiosInstance: AxiosInstance;
@@ -30,22 +13,16 @@ export class AppHttpAxios {
     });
     this.axiosInstance.interceptors.request.use(Request);
     this.axiosInstance.defaults.headers.common['Authorization'] = localStorage.getItem('ocirenegotnemacro') || '';
-    /*this.axiosInstance.interceptors.response.use(ok=>{
-      console.log('resposta boa funciona');
-    },e=>{
-      if(e.response.status === 400){
-        alert(e.response.data.aviso);
-      }
-   })*/
-  }
-//--construtor rematricula
-  /*constructor() {
-    this.axiosInstance = Axios.create({
-      baseURL: process.env.API_URL || process.env.VUE_APP_API_URL,
+    this.axiosInstance.interceptors.response.use(function (response) {
+      return response;
+    }, function (error) {
+      if(error.response.status === 404 ||error.response.status === 404 )
+      alert(error.response.data.detail)
+      router.push(Rotas.Visitante.Login);
+      return Promise.reject(error);
     });
-    this.axiosInstance.interceptors.request.use(getAxiosInterceptor('request'));
-    this.axiosInstance.interceptors.response.use(getAxiosInterceptor('response'), getAxiosInterceptor('error'));
-  }*/
+  }
+
 
   public get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
     return this.axiosInstance.get(url, config);
