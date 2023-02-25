@@ -1,4 +1,4 @@
-import  TipoModel  from '@/Model/';
+import  TipoModel  from '@/Model/Itens/TipoModel';
 import {TipoRepository} from '@/Repository/Itens/TipoRepository';
 import { Inject } from 'typescript-ioc';
 

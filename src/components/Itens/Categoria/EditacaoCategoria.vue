@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { Vue, Component,Prop } from "vue-property-decorator";
-import CategoriaModel from "@/Model/Selecao/CategoriaModel";
+import CategoriaModel from "@/Model/Itens/CategoriaModel";
 import { namespace } from "vuex-class";
 import { StoreNamespaces } from "@/store";
 import { ItensActionTypes } from "@/store/Item/actions";

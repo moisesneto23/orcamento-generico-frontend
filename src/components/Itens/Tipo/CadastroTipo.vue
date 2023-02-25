@@ -59,9 +59,9 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import CategoriaModel from '@/Model/Selecao/CategoriaModel';
-import TipoModel from "@/Model/Selecao/TipoModel";
-import TipoService from "@/Service/Selecao/TipoService";
+import CategoriaModel from '@/Model/Itens/CategoriaModel';
+import TipoModel from "@/Model/Itens/TipoModel";
+import TipoService from "@/Service/Itens/TipoService";
 import { Inject } from "typescript-ioc";
 import { StoreNamespaces } from "@/store";
 import { namespace } from "vuex-class";

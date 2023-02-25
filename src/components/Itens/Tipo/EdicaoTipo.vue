@@ -44,8 +44,8 @@
 
 <script lang="ts">
 import { Vue, Component,Prop } from "vue-property-decorator";
-import TipoModel from "@/Model/Selecao/TipoModel";
-import TipoService from "@/Service/Selecao/TipoService";
+import TipoModel from "@/Model/Itens/TipoModel";
+import TipoService from "@/Service/Itens/TipoService";
 import { Inject } from "typescript-ioc";
 
 

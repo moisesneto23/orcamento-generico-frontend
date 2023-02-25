@@ -1,5 +1,5 @@
-import { Dimencao } from "./Enum/DimencaoEnum";
-import { DirecaoCalculo } from "./Enum/DirecaoCalculoEnum";
+import { Dimencao } from "../Enum/DimencaoEnum";
+import { DirecaoCalculo } from "../Enum/DirecaoCalculoEnum";
 export default class ItemModel {
     public  Id! : number;
     public  nome! : string;

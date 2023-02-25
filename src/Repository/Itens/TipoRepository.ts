@@ -1,5 +1,5 @@
 import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
-import TipoModel from '@/Model/Selecao/TipoModel';
+import TipoModel from '@/Model/Itens/TipoModel';
 import store from '@/store';
 import { Inject } from 'typescript-ioc';
 

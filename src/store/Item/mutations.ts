@@ -1,6 +1,6 @@
-import ItemModel from '@/Model/ItemModel';
-import CategoriaModel from '@/Model/Selecao/CategoriaModel';
-import TipoModel from '@/Model/Selecao/TipoModel';
+import ItemModel from '@/Model/Itens/ItemModel';
+import CategoriaModel from '@/Model/Itens/CategoriaModel';
+import TipoModel from '@/Model/Itens/TipoModel';
 import { MutationTree } from 'vuex';
 import { ItemState } from './state';
 

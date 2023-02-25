@@ -1,5 +1,5 @@
-import CategoriaModel  from '@/Model/Selecao/CategoriaModel';
-import  ItemModel  from '@/Model/ItemModel';
+import CategoriaModel  from '@/Model/Itens/CategoriaModel';
+import  ItemModel  from '@/Model/Itens/ItemModel';
 import { ActionTree } from 'vuex';
 import { ItemState } from './state';
 import { RootState } from '@/store';
@@ -9,7 +9,7 @@ import { Container, Inject } from 'typescript-ioc';
 import  ItemService  from '@/Service/Itens/ItemService';
 import CategoriaService from '@/Service/Itens/CategoriaService';
 import TipoService from '@/Service/Itens/TipoService';
-import TipoModel from '@/Model/Selecao/TipoModel';
+import TipoModel from '@/Model/Itens/TipoModel';
 
 
 
