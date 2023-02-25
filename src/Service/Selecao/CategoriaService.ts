@@ -8,8 +8,8 @@ export default class CategoriaService {
     @Inject
     private categoriaRepository!: CategoriaRepository;
 
-    public async obterTodasEmpresas(): Promise<CategoriaModel[]> {
-        return await this.categoriaRepository.obterCategorias();
+    public async obterTodasCategorias(): Promise<CategoriaModel[]> {
+        return await this.categoriaRepository.obterTodasCategorias();
     }
 
     public async salvarCategoria(categoria:CategoriaModel): Promise<any> {

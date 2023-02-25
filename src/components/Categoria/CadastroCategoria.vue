@@ -46,24 +46,19 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import CategoriaService from '@/Service/Selecao/CategoriaService';
-import CategoriaRequest from '@/Model/Request/CategoriaRequest';
 import { Inject } from "typescript-ioc";
 import CategoriaModel from "@/Model/Selecao/CategoriaModel";
 
 @Component({})
 export default class CadastroCategoria extends Vue {
-  private dialog = false;
   @Inject
   private _categoria!: CategoriaService;
   private categoria = new CategoriaModel();
 
   public async adicionarCategoria(){
-
-    console.log(this.categoria);
     this._categoria.salvarCategoria(this.categoria).then(()=>{
-      location.reload();
+      this.$emit('atualizar-categoria-item');
     });
-    this.dialog = false;
   }
 
 }

@@ -1,40 +1,59 @@
+import CategoriaModel  from '@/Model/Selecao/CategoriaModel';
 import  ItemModel  from '@/Model/ItemModel';
 import { ActionTree } from 'vuex';
 import { ItemState } from './state';
 import { RootState } from '@/store';
-import { ItemMutationTypes } from './mutations';
-import { Container } from 'typescript-ioc';
+import  ItemMutationTypes  from './mutations';
+import {ItensMutationTypes} from './mutations';
+import { Container, Inject } from 'typescript-ioc';
 import  ItemService  from '@/Service/Selecao/ItemService';
+import CategoriaService from '@/Service/Selecao/CategoriaService';
 
 
-export enum ResumoActionTypes {
-  OBTER_RESUMO = 'OBTER_RESUMO',
-  OBTER_NOME_DISCIPLINAS_SEM_HORARIO = 'OBTER_NOME_DISCIPLINAS_SEM_HORARIO',
-  EXISTEM_DISCIPLINAS_PARA_EXIBIR = 'EXISTEM_DISCIPLINAS_PARA_EXIBIR',
-  EXISTEM_DISCIPLINAS_NA_FILA_DE_ESPERA = 'EXISTEM_DISCIPLINAS_NA_FILA_DE_ESPERA',
-  SETAR_TURMA_SELECIONADA = 'SETAR_TURMA_SELECIONADA',
+
+export enum ItensActionTypes {
+  OBTER_TIPOS_ITEM = 'OBTER_TIPOS_ITEM',
+  OBTER_CATEGORIAS_ITEM = 'OBTER_CATEGORIAS_ITEM',
+  SALVAR_CATEGORIA_ITEM = 'SALVAR_CATEGORIA_ITEM',
+  EDITAR_CATEGORIA_ITEM = 'EDITAR_CATEGORIA_ITEM',
+  REMOVER_CATEGORIA_ITEM = 'REMOVER_CATEGORIA_ITEM',
+  OBTER_ITEMS = 'OBTER_ITEMS',
+ 
 }
+
 
 const actions: ActionTree<ItemState, RootState> = {
 
- /* async [ResumoActionTypes.OBTER_RESUMO]({ commit }, codigoDoAluno: number) {
-    const service = (Container.get(ResumoService) as ResumoService);
-
-    const disciplinas = await service.obterResumo(codigoDoAluno);
-
-    commit(ResumoMutationTypes.SET_HORARIOS, disciplinas);
+  async [ItensActionTypes.OBTER_CATEGORIAS_ITEM]({ commit }) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
   },
 
-  async [ResumoActionTypes.OBTER_NOME_DISCIPLINAS_SEM_HORARIO]({ commit }, codigoDoAluno: number) {
-    const service = (Container.get(ResumoService) as ResumoService);
-
-    const disciplinas = await service.obterDisciplinasSemHorario(codigoDoAluno);
-    commit(ResumoMutationTypes.SET_DISCIPLINAS_SEM_HORARIO, disciplinas);
+  async [ItensActionTypes.SALVAR_CATEGORIA_ITEM]({ commit }, categoria: CategoriaModel ) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    await service.salvarCategoria(categoria);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+  },
+  async [ItensActionTypes.REMOVER_CATEGORIA_ITEM]({ commit }, categoria: number ) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    await service.delete(categoria);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
   },
 
-  async [ResumoActionTypes.SETAR_TURMA_SELECIONADA]({ commit }, turmaSelecionada: Turma) {
-    commit(ResumoMutationTypes.SET_TURMA_SELECIONADA, turmaSelecionada);
-  },*/
+  async [ItensActionTypes.OBTER_TIPOS_ITEM]({ commit }) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+  },
+
+  async [ItensActionTypes.OBTER_ITEMS]({ commit }) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+  },
 };
 
 export default actions;

@@ -10,8 +10,7 @@ export class CategoriaRepository {
     private $http!: AppHttpAxios;
     private informacoesEmpresa = (store.state.informacoesEmpresa as any);
    
-    public async obterCategorias(): Promise<CategoriaModel[]> {
-        debugger;
+    public async obterTodasCategorias(): Promise<CategoriaModel[]> {
         const result = await this.$http.get(`CategoriaItem/${this.informacoesEmpresa.empresaModel.id}`);
         return result.data;
     }
