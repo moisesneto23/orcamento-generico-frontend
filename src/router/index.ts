@@ -45,7 +45,7 @@ const routes: Array<RouteConfig> = [
         component: () => import("@/views/navegacao/Inicio/CadastroItens.vue"),
       },
     ],
-    beforeEnter,
+    //beforeEnter,
   },
 ];
 const router = new VueRouter({

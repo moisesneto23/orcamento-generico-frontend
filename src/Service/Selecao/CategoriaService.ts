@@ -12,11 +12,11 @@ export default class CategoriaService {
         return await this.categoriaRepository.obterCategorias();
     }
 
-    public async salvarCategoria(categoria:CategoriaRequest): Promise<any> {
+    public async salvarCategoria(categoria:CategoriaModel): Promise<any> {
          await this.categoriaRepository.salvarCategoria(categoria);
     }
 
-    public async editarCategoria(categoria:CategoriaRequest): Promise<CategoriaModel> {
+    public async editarCategoria(categoria:CategoriaModel): Promise<CategoriaModel> {
        return await this.categoriaRepository.editarCategoria(categoria);
     }
     public async delete(id: number): Promise<any>{

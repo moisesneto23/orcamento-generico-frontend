@@ -1,11 +1,11 @@
 <template>
   <v-expansion-panels focusable>
     <v-expansion-panel v-for="categoria in categorias" :key="categoria.id">
-      <v-expansion-panel-header>  <h1>{{ categoria.nome }}</h1></v-expansion-panel-header>
+      <v-expansion-panel-header>  <h1>{{ categoria.descricao }}</h1></v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-row>
           <v-col cols="6">
-            <edicao-categoria :categoria="categoria" @categoriaAlterada="categoria=$event" ></edicao-categoria>
+            <edicao-categoria :categoria="categoria" @categoriaAlterada="alteracaoCategoria" ></edicao-categoria>
            
             <h3 class="text-center">Editar</h3></v-col>
             
@@ -43,7 +43,10 @@ export default class ListagemCategoria extends Vue {
   public async obterCategorias() {
     this.categorias = await this._categoriaService.obterTodasEmpresas();
   }
-      private CategoraEdicao!: CategoriaRequest;
+  public alteracaoCategoria(categoria: CategoriaModel){
+    this.categorias.filter(x=>x.id===categoria.id).map(c=>c =categoria);
+  }
+      private CategoraEdicao!: CategoriaModel;
 
       public excluirCategoria(id:number){
         this._categoriaService.delete(id).then(()=>{

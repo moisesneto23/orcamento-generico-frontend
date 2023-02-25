@@ -20,7 +20,6 @@ const actions: ActionTree<GlobalState, RootState> = {
 
 
   async [GlobalActionTypes.FAZER_LOGIN]({ commit }, login: Login): Promise<any> {
-    debugger;
     const service = (Container.get(EmpresaService) as EmpresaService);
     const data = await service.obterInformacoesEmpresa(login);
     localStorage.setItem("ocirenegotnemacro", data.token);

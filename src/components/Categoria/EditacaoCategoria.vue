@@ -13,7 +13,7 @@
                   <v-text-field
                     label="Nome da categoria*"
                     required
-                    v-model="categoria.nome"
+                    v-model="exibeCategoria.descricao"
                   ></v-text-field>
                 </v-col>
                 
@@ -23,7 +23,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn dark  @click="processarEdicao(categoria)" class="mt-8">
+            <v-btn dark  @click="processarEdicao(exibeCategoria)" class="mt-8">
               Salvar
             </v-btn>
             
@@ -60,16 +60,17 @@ export default class EdicaoCategoria extends Vue {
   public get exibeCategoria(){
     return this.categoria;
   }
-  public processarEdicao(categoria: CategoriaRequest){
-        console.log(categoria); 
+  public processarEdicao(categoria: CategoriaModel){
     this.editarCategoria(categoria);
     this.dialog = false;
 
     
     this.$emit('categoriaAlterada',this.categoria);
   }
-  private async editarCategoria(categoria: CategoriaRequest): Promise<any>{
-      this.categoria = await this._categoriaService.editarCategoria(categoria);
+  private async editarCategoria(categoria: CategoriaModel): Promise<any>{
+       await this._categoriaService.editarCategoria(categoria).then((cat)=>{
+        this.$emit('categoriaItem-atualizada',cat);
+       });
   }
 }
 </script>

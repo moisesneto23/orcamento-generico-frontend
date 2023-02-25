@@ -14,7 +14,7 @@
                     label="Nome da categoria*"
                     required
                   
-                    v-model="categoria.nome"
+                    v-model="categoria.descricao"
                   ></v-text-field>
                 </v-col>
                 
@@ -48,17 +48,17 @@ import { Vue, Component } from "vue-property-decorator";
 import CategoriaService from '@/Service/Selecao/CategoriaService';
 import CategoriaRequest from '@/Model/Request/CategoriaRequest';
 import { Inject } from "typescript-ioc";
+import CategoriaModel from "@/Model/Selecao/CategoriaModel";
 
 @Component({})
 export default class CadastroCategoria extends Vue {
   private dialog = false;
   @Inject
   private _categoria!: CategoriaService;
-  private categoria = new CategoriaRequest();
+  private categoria = new CategoriaModel();
 
   public async adicionarCategoria(){
 
-    this.categoria.empresa_id = 13;
     console.log(this.categoria);
     this._categoria.salvarCategoria(this.categoria).then(()=>{
       location.reload();
