@@ -20,14 +20,14 @@ export enum ItensActionTypes {
   REMOVER_CATEGORIA_ITEM = 'REMOVER_CATEGORIA_ITEM',
 
   OBTER_TIPOS_ITEM = 'OBTER_TIPOS_ITEM',
-  SALVAR_TIPO_ITEM = 'SALVAR_CATEGORIA_ITEM',
-  EDITAR_TIPO_ITEM = 'EDITAR_CATEGORIA_ITEM',
-  REMOVER_TIPO_ITEM = 'REMOVER_CATEGORIA_ITEM',
+  SALVAR_TIPO_ITEM = 'SALVAR_TIPO_ITEM',
+  EDITAR_TIPO_ITEM = 'EDITAR_TIPO_ITEM',
+  REMOVER_TIPO_ITEM = 'REMOVER_TIPO_ITEM',
 
   OBTER_ITEMS = 'OBTER_ITEMS',
-  SALVAR_ITEM = 'SALVAR_CATEGORIA_ITEM',
-  EDITAR_ITEM = 'EDITAR_CATEGORIA_ITEM',
-  REMOVER_ITEM = 'REMOVER_CATEGORIA_ITEM',
+  SALVAR_ITEM = 'SALVAR_ITEM',
+  EDITAR_ITEM = 'EDITAR_ITEM',
+  REMOVER_ITEM = 'REMOVER_ITEM',
 }
 
 
@@ -45,16 +45,17 @@ const actions: ActionTree<ItemState, RootState> = {
     const categorias = await service.obterTodasCategorias();
     commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
   },
-  async [ItensActionTypes.REMOVER_CATEGORIA_ITEM]({ commit }, categoria: number ) {
-    const service = (Container.get(CategoriaService) as CategoriaService);
-    await service.delete(categoria);
-    const categorias = await service.obterTodasCategorias();
-    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
-  },
 
   async [ItensActionTypes.EDITAR_CATEGORIA_ITEM]({ commit }, categoria: CategoriaModel ) {
     const service = (Container.get(CategoriaService) as CategoriaService);
     await service.editarCategoria(categoria);
+    const categorias = await service.obterTodasCategorias();
+    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+  },
+
+  async [ItensActionTypes.REMOVER_CATEGORIA_ITEM]({ commit }, id: number ) {
+    const service = (Container.get(CategoriaService) as CategoriaService);
+    await service.delete(id);
     const categorias = await service.obterTodasCategorias();
     commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
   },

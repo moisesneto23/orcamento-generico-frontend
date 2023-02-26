@@ -14,11 +14,11 @@ export class TipoRepository {
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-        const result = await this.$http.post('TipoItem', Tipo);
+        const result = await this.$http.post(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`, Tipo);
     }
 
     public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
-        const result = await this.$http.patch('TipoItem', Tipo);
+        const result = await this.$http.patch(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`, Tipo);
         return result.data;
     }
 

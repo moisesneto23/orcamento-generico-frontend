@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>login</h1>
-    <v-btn @click="muda()">muda</v-btn>
 
     <v-container>
       <v-col>
@@ -67,16 +66,8 @@ public async fazerLogin(){
       await this.fazLogin(login).then(()=>{
         //this.carregando =false;
         this.$router.push(Rotas.Inicio);
-      });
- 
-      
+      });   
 };
-
-  public muda() {
-    localStorage.setItem("ocirenegotnema", "kdhfsdhfsh");
-    this.$router.push(Rotas.Inicio);
-  }
-
 }
 </script>
 <style scoped>
