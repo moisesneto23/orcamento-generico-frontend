@@ -16,7 +16,23 @@
   </v-expansion-panels>
 </template>
 <script lang="ts">
+import ItemModel from "@/Model/Itens/ItemModel";
+import { StoreNamespaces } from "@/store";
+import { ItensActionTypes } from "@/store/Item/actions";
 import { Vue, Component } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+
+const item = namespace(StoreNamespaces.ITEM);
 @Component
-export default class ListaPerimetro extends Vue {}
+export default class ListaPerimetro extends Vue {
+    @item.Action(ItensActionTypes.OBTER_ITENS)
+  public obterTodosItens!:() => Promise<any>;
+
+  @item.State
+  public itens!: ItemModel;
+
+  mounted(){
+    this.obterTodosItens();
+  }
+}
 </script>

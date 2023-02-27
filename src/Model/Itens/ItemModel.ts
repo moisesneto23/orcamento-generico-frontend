@@ -1,3 +1,4 @@
+import TipoModel from '@/Model/Itens/TipoModel';
 import { Dimencao } from "../Enum/DimencaoEnum";
 import { DirecaoCalculo } from "../Enum/DirecaoCalculoEnum";
 export default class ItemModel {
@@ -11,4 +12,5 @@ export default class ItemModel {
     public valorCompra!: number;
     public Dimencao!: Dimencao;
     public  DirecaoCalculo!: DirecaoCalculo;// 1 é largura, 2 é altura e 3 é profundidade
+    public TipoItem!: TipoModel;
 }

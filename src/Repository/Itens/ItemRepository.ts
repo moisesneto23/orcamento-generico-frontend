@@ -11,13 +11,13 @@ export class ItemRepository {
 
     public async obterTodosItens(): Promise<ItemModel[]> {
 
-        const result = await this.$http.get(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`);
+        const result = await this.$http.get(`Item/${this.informacoesEmpresa.empresaModel.id}`);
         return result.data;
     }
 
     public async salvarItem(Item: ItemModel): Promise<any> {
 
-        const url = 'TipoItem';
+        const url = 'Item';
         const result = await this.$http.post(url, Item);
     }
 

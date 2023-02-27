@@ -56,7 +56,7 @@ export default class Loginin extends Vue {
   private carregando =false;
   private show1= false;
   
-@Action(GlobalActionTypes.FAZER_LOGIN) // nao esta funcionado com: --GlobalActionTypes.FAZER_LOGIN
+@Action(GlobalActionTypes.FAZER_LOGIN)
 private fazLogin!: (login:Login)=> Promise<void>;
 
 public async fazerLogin(){
@@ -64,7 +64,7 @@ public async fazerLogin(){
       this.carregando= true;
       const login = new Login(this.email, this.senha);
       await this.fazLogin(login).then(()=>{
-        //this.carregando =false;
+        this.carregando =false;
         this.$router.push(Rotas.Inicio);
       });   
 };

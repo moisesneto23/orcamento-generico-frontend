@@ -67,13 +67,17 @@
 
 
 <script lang="ts">
+import ItemModel from "@/Model/Itens/ItemModel";
+import { StoreNamespaces } from "@/store";
+import { ItensActionTypes } from "@/store/Item/actions";
 import { Vue, Component } from "vue-property-decorator";
-import EmpresaModel from "@/Model/Empresa/EmpresaModel";
-import EmpresaService from "@/Service/EmpresaService";
-import { Inject } from "typescript-ioc";
+import { namespace } from "vuex-class";
+const item = namespace(StoreNamespaces.ITEM);
 
 @Component({})
 export default class CadastroItemVolume extends Vue {
+  @item.Action(ItensActionTypes.SALVAR_ITEM)
+  public salvarItem!:(item: ItemModel) => Promise<any>;
   public dialogItem = false;
   public tipos = ['grade','porta','portao de enrrolar'];
 }

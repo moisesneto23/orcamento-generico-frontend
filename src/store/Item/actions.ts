@@ -24,7 +24,7 @@ export enum ItensActionTypes {
   EDITAR_TIPO_ITEM = 'EDITAR_TIPO_ITEM',
   REMOVER_TIPO_ITEM = 'REMOVER_TIPO_ITEM',
 
-  OBTER_ITEMS = 'OBTER_ITEMS',
+  OBTER_ITENS = 'OBTER_ITENS',
   SALVAR_ITEM = 'SALVAR_ITEM',
   EDITAR_ITEM = 'EDITAR_ITEM',
   REMOVER_ITEM = 'REMOVER_ITEM',
@@ -88,7 +88,7 @@ const actions: ActionTree<ItemState, RootState> = {
   },
 
 
-  async [ItensActionTypes.OBTER_ITEMS]({ commit }) {
+  async [ItensActionTypes.OBTER_ITENS]({ commit }) {
     const service = (Container.get(ItemService) as ItemService);
     const itens = await service.obterTodosItens();
     commit(ItensMutationTypes.SET_ITEMS, itens);
