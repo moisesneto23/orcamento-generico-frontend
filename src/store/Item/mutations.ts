@@ -20,8 +20,8 @@ const mutations: MutationTree<ItemState> = {
   [ItensMutationTypes.SET_TIPOS_ITEM](state: ItemState, tipo: TipoModel[]) {
     state.tipos = tipo
   },
-  [ItensMutationTypes.SET_ITEMS](state: ItemState, item: ItemModel[]) {
-    state.itens =item;
+  [ItensMutationTypes.SET_ITEMS](state: ItemState, itens: ItemModel[]) {
+    state.itens =itens;
   },
 };
 

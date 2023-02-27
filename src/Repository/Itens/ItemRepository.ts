@@ -1,33 +1,33 @@
-import  HttpAxios  from '@/axios/AppHttpAxios';
+import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
 import ItemModel from '@/Model/Itens/ItemModel';
 import { Inject } from 'typescript-ioc';
 import ItemRequest from '@/Model/Request/ItemRequest'
-// falta alterar o item request
+import store from '@/store';
 export class ItemRepository {
     
-   
     @Inject
-    private $http!: HttpAxios;
+    private $http!: AppHttpAxios;
+    private informacoesEmpresa = (store.state.informacoesEmpresa as any);
 
-    public async obterItems(): Promise<ItemModel[]> {
+    public async obterTodosItens(): Promise<ItemModel[]> {
 
-        const result = await this.$http.get(`https://localhost:7115/api/Item/${13}`);
+        const result = await this.$http.get(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`);
         return result.data;
     }
 
-    public async salvarItem(Item: ItemRequest): Promise<any> {
+    public async salvarItem(Item: ItemModel): Promise<any> {
 
-        const url = 'https://localhost:7115/api/Item';
+        const url = 'TipoItem';
         const result = await this.$http.post(url, Item);
     }
 
-    public async editarItem(Item: ItemRequest): Promise<ItemModel> {
-        const url = 'https://localhost:7115/api/Item';
+    public async editarItem(Item: ItemModel): Promise<ItemModel> {
+        const url = 'Item';
         const result = await this.$http.patch(url, Item);
         return result.data;
     }
     public async delete(id: any) : Promise<any>{
-        const url =`https://localhost:7115/api/Item/Item/${id}`;
+        const url =`Item/${id}`;
         await this.$http.delete(url);
     }
 }

@@ -89,9 +89,30 @@ const actions: ActionTree<ItemState, RootState> = {
 
 
   async [ItensActionTypes.OBTER_ITEMS]({ commit }) {
-    const service = (Container.get(CategoriaService) as CategoriaService);
-    const categorias = await service.obterTodasCategorias();
-    commit(ItensMutationTypes.SET_CATEGORIAS_ITEM, categorias);
+    const service = (Container.get(ItemService) as ItemService);
+    const itens = await service.obterTodosItens();
+    commit(ItensMutationTypes.SET_ITEMS, itens);
+  },
+
+  async [ItensActionTypes.SALVAR_ITEM]({ commit }, item: ItemModel) {
+    const service = (Container.get(ItemService) as ItemService);
+    await service.salvarItem(item);
+    const itens = await service.obterTodosItens();
+    commit(ItensMutationTypes.SET_ITEMS, itens);
+  },
+
+  async [ItensActionTypes.EDITAR_ITEM]({ commit }, item: ItemModel) {
+    const service = (Container.get(ItemService) as ItemService);
+    await service.editarItem(item);
+    const itens = await service.obterTodosItens();
+    commit(ItensMutationTypes.SET_ITEMS, itens);
+  },
+
+  async [ItensActionTypes.REMOVER_ITEM]({ commit }, id: number) {
+    const service = (Container.get(ItemService) as ItemService);
+    await service.delete(id);
+    const itens = await service.obterTodosItens();
+    commit(ItensMutationTypes.SET_ITEMS, itens);
   },
 };
 

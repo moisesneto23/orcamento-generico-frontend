@@ -99,12 +99,11 @@ public selecuinaIdSelect(){
 
 
   public adicionarTipo(){
-    this.dialogTipo = false;
-    /*this._tipoService.salvarTipo(this.tipo).then(()=>{
-       location. reload();
-    });*/
+   
     this.tipo.categoriaItemId = this.idSelect || 0;
-    this.salvarTipoItem(this.tipo);
+    this.salvarTipoItem(this.tipo).then(()=>{
+       this.dialogTipo = false;
+    });
   }
 }
 </script>
