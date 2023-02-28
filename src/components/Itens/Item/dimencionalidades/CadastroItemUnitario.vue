@@ -97,7 +97,6 @@ export default class CadastroItemUnitario extends Vue {
     this.item.tipoItemId = this.idSelect || 0;
     this.item.dimencaoId = 7;
     this.item.direcaoCalculoId = 1;
-    debugger
     await this.salvaItem(this.item).then(()=>{
       this.dialogItem = false;
     })
