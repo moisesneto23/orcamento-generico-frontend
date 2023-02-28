@@ -25,14 +25,14 @@ import { namespace } from "vuex-class";
 const item = namespace(StoreNamespaces.ITEM);
 @Component
 export default class ListaVolume extends Vue {
-    @item.Action(ItensActionTypes.OBTER_ITENS)
-  public obterTodosItens!:() => Promise<any>;
+  
+
 
   @item.State
   public itens!: ItemModel;
 
   mounted(){
-    this.obterTodosItens();
+ 
   }
 }
 </script>

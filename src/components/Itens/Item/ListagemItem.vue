@@ -95,7 +95,12 @@ import CadastroItemVolume from '@/components/Itens/Item/dimencionalidades/Cadast
 import ListaVolume from '@/components/Itens/Item/dimencionalidades/ListaVolume.vue' ;
 import CadastroItemPerimetro from '@/components/Itens/Item/dimencionalidades/CadastroItemPerimetro.vue' ;
 import ListaPerimetro from '@/components/Itens/Item/dimencionalidades/ListaPerimetro.vue' ;
+import ItemModel from "@/Model/Itens/ItemModel";
+import { StoreNamespaces } from "@/store";
+import { ItensActionTypes } from "@/store/Item/actions";
+import { namespace } from "vuex-class";
 
+const item = namespace(StoreNamespaces.ITEM);
 @Component({
   components: {
     CadastroItemUnitario,
@@ -112,7 +117,20 @@ import ListaPerimetro from '@/components/Itens/Item/dimencionalidades/ListaPerim
 })
 export default class ListagemItem extends Vue {
   public tab = null;
+  @item.Action(ItensActionTypes.OBTER_ITENS)
+  public obterTodosItens!:() => Promise<any>;
+
+  @item.Action(ItensActionTypes.OBTER_TIPOS_ITEM)
+  public obterTodostipoItem!:() => Promise<any>;
+
+  public async mounted(){
+    await this.obterTodosItens();
+    await this.obterTodostipoItem();
+  }
 }
+ 
+
+
 </script>
 <style scoped>
 #cadastroOrcamento{
