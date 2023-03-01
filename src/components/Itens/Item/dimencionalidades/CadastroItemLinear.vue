@@ -30,7 +30,7 @@
                   <v-text-field
                     label="Tamanho da barra"
                     hint="comprimento em metros"
-                     v-model="comprimentoStr"
+                     v-model="comprimentoBarraStr"
                   ></v-text-field>
                 </v-col>
 
@@ -50,7 +50,14 @@
                     v-model="select"
                   ></v-select>
                 </v-col>
-              
+              <v-col cols="12" sm="6">
+                  <v-select
+                    :items="direcaoCauculo"
+                    label="Selecione a direçao de calculo*"
+                    required
+                    v-model="selectDirecaoCauculo"
+                  ></v-select>
+                </v-col>
                 
               </v-row>
             </v-container>
@@ -79,6 +86,7 @@
 
 <script lang="ts">
 import { Dimencao } from "@/Model/Enum/DimencaoEnum";
+import { DirecaoCalculo } from "@/Model/Enum/DirecaoCalculoEnum";
 import ItemModel from "@/Model/Itens/ItemModel";
 import TipoModel from "@/Model/Itens/TipoModel";
 import { StoreNamespaces } from "@/store";
@@ -94,24 +102,32 @@ export default class CadastroItemUnitario extends Vue {
 
   @item.State
  private tipos!: TipoModel[];
-
+  public direcaoCauculo = ['Largura',  'Altura', 'Comprimento'];
   public item = new ItemModel();
   public selecuinaIdSelect(){
   this.idSelect = this.tipos.find(x=>x.descricao == this.select)?.id;
 }
-  public comprimentoStr= '1';
+  public comprimentoBarraStr= '1';
   public valorVendaStr ='';
   public valorCompraStr = '';
   public idSelect?: number;
   public select = '';
+  public selectDirecaoCauculo!: string;
+
   public async salvarItem(){
-    debugger
-    let comprimento = parseFloat(this.comprimentoStr);
+    switch (this.selectDirecaoCauculo) {
+      case 'Largura': this.item.direcaoCalculoId = DirecaoCalculo.Largura;
+        break;
+      case 'Altura': this.item.direcaoCalculoId = DirecaoCalculo.Altura;
+        break;
+      case 'Comprimento': this.item.direcaoCalculoId = DirecaoCalculo.Comprimento;
+        break;
+    }
+    let comprimentoBarra = parseFloat(this.comprimentoBarraStr);
     this.item.tipoItemId = this.idSelect || 0;
     this.item.dimencaoId = Dimencao.Comprimento;
-    this.item.direcaoCalculoId = 1;
-    this.item.valorCompra = parseFloat(this.valorCompraStr) / comprimento;
-    this.item.valorVenda = parseFloat(this.valorVendaStr) / comprimento;
+    this.item.valorCompra = parseFloat(this.valorCompraStr) / comprimentoBarra;
+    this.item.valorVenda = parseFloat(this.valorVendaStr) / comprimentoBarra;
     await this.salvaItem(this.item).then(()=>{
       this.dialogItem = false;
     })
