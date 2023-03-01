@@ -112,7 +112,7 @@ export default class CadastroItemUnitario extends Vue {
   public valorCompraStr = '';
   public idSelect?: number;
   public select = '';
-  public selectDirecaoCauculo!: string;
+  public selectDirecaoCauculo= '';
 
   public async salvarItem(){
     switch (this.selectDirecaoCauculo) {
