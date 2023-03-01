@@ -1,24 +1,27 @@
 import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
 import TipoModel from '@/Model/Itens/TipoModel';
-import store from '@/store';
 import { Inject } from 'typescript-ioc';
 
 export class TipoRepository {
     @Inject
     private $http!: AppHttpAxios;
-    private informacoesEmpresa = (store.state.informacoesEmpresa as any);
+    private idEmpresa = this.pegaIdEmpresa();
+    private pegaIdEmpresa(): number{
+        let id = localStorage.getItem('businessId') || '0';
+        return parseInt(id);
+    }
 
     public async obterTodosTipos(): Promise<TipoModel[]> {
-        const result = await this.$http.get(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`);
+        const result = await this.$http.get(`TipoItem/${this.idEmpresa}`);
         return result.data;
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-        const result = await this.$http.post(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`, Tipo);
+        const result = await this.$http.post('TipoItem', Tipo);
     }
 
     public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
-        const result = await this.$http.patch(`TipoItem/${this.informacoesEmpresa.empresaModel.id}`, Tipo);
+        const result = await this.$http.patch('TipoItem', Tipo);
         return result.data;
     }
 

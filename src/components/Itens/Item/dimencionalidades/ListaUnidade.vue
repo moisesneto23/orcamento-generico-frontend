@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panels focusable>
     <v-expansion-panel v-for="(item, i) in obterItensUnitarios" :key="i">
-      <v-expansion-panel-header>{{item.nome}}</v-expansion-panel-header>
+      <v-expansion-panel-header><h2>  {{ item.nome }}</h2> <h4>Tipo: {{ item.tipoItem.descricao}} </h4> </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-row>
           <v-col cols="6">
@@ -17,6 +17,7 @@
   </v-expansion-panels>
 </template>
 <script lang="ts">
+import { Dimencao } from "@/Model/Enum/DimencaoEnum";
 import ItemModel from "@/Model/Itens/ItemModel";
 import TipoModel from "@/Model/Itens/TipoModel";
 import { StoreNamespaces } from "@/store";
@@ -37,7 +38,7 @@ export default class ListaUnidade extends Vue {
   public removerItem!:(id: number) => Promise<void>
 
   public get obterItensUnitarios(){
-    const intens = this.itens.filter(i=>i.dimencaoId === 7);
+    const intens = this.itens.filter(i=>i.dimencaoId === Dimencao.Unidade);
     return intens;
   }
  public async excluirItem(id: number){

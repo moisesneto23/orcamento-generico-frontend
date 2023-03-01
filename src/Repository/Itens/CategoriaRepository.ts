@@ -8,20 +8,23 @@ export class CategoriaRepository {
    
     @Inject
     private $http!: AppHttpAxios;
-    private informacoesEmpresa = (store.state.informacoesEmpresa as any);
+    private idEmpresa = this.pegaIdEmpresa();
+    private pegaIdEmpresa(): number{
+        let id = localStorage.getItem('businessId') || '0';
+        return parseInt(id);
+    }
    
     public async obterTodasCategorias(): Promise<CategoriaModel[]> {
-        const result = await this.$http.get(`CategoriaItem/${this.informacoesEmpresa.empresaModel.id}`);
+        const result = await this.$http.get(`CategoriaItem/${this.idEmpresa}`);
         return result.data;
     }
 
     public async salvarCategoria(categoria: CategoriaModel): Promise<any> {
-        categoria.empresaId = this.informacoesEmpresa.empresaModel.id;
+        categoria.empresaId = this.idEmpresa;
         const result = await this.$http.post('CategoriaItem', categoria);
     }
 
     public async editarCategoria(categoria: CategoriaModel): Promise<CategoriaModel> {
-        categoria.empresaId = this.informacoesEmpresa.empresaModel.id;
         const result = await this.$http.patch('CategoriaItem', categoria);
         return result.data;
     }

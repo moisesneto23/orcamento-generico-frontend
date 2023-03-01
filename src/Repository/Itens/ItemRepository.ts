@@ -7,11 +7,15 @@ export class ItemRepository {
     
     @Inject
     private $http!: AppHttpAxios;
-    private informacoesEmpresa = (store.state.informacoesEmpresa as any);
+    private idEmpresa = this.pegaIdEmpresa();
+    private pegaIdEmpresa(): number{
+        let id = localStorage.getItem('businessId') || '0';
+        return parseInt(id);
+    }
 
     public async obterTodosItens(): Promise<ItemModel[]> {
 
-        const result = await this.$http.get(`Item/${this.informacoesEmpresa.empresaModel.id}`);
+        const result = await this.$http.get(`Item/${this.idEmpresa}`);
         return result.data;
     }
 

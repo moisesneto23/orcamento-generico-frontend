@@ -1,5 +1,5 @@
 export default class EmpresaModel {
-    public  Id! : number;
+    public  id! : number;
     public  nome! : string;
     public  Cnpj !: string;
     public  email !: string;

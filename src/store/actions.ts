@@ -19,6 +19,8 @@ const actions: ActionTree<GlobalState, RootState> = {
     const service = (Container.get(EmpresaService) as EmpresaService);
     const data = await service.obterInformacoesEmpresa(login);
     localStorage.setItem("ocirenegotnemacro", data.token);
+    const idEmpresa = data.empresaModel.id.toString()
+    localStorage.setItem('businessId',idEmpresa);
     commit(GlobalMutationTypes.SET_FAZER_LOGIN, data); 
   },
 
