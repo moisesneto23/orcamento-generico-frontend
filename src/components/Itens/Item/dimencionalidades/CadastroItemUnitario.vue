@@ -4,7 +4,7 @@
       <v-dialog v-model="dialogItem" persistent max-width="800px">
         <v-card>
           <v-card-title>
-            <span class="text-h5">Criar Item</span>
+            <span class="text-h5">Criar Item Unitario</span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -95,7 +95,7 @@ export default class CadastroItemUnitario extends Vue {
   public select = '';
   public async salvarItem(){
     this.item.tipoItemId = this.idSelect || 0;
-    this.item.dimencaoId = 7;
+    this.item.dimencaoId = Dimencao.Unidade;
     this.item.direcaoCalculoId = 1;
     await this.salvaItem(this.item).then(()=>{
       this.dialogItem = false;

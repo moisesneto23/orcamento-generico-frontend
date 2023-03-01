@@ -16,7 +16,7 @@ export class AppHttpAxios {
     this.axiosInstance.interceptors.response.use(function (response) {
       return response;
     }, function (error) {
-      if(error.response.status === 404 ){
+      if(error.response.status === 404 || error.response.status === 401){
         alert(error.response.data.detail);
         router.push(Rotas.Visitante.Login);
       }
