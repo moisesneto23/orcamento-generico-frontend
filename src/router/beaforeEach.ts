@@ -6,6 +6,7 @@ export default async (to: any, from: any, next: any) => {
   ) {
     console.log("jwt apagado");
     localStorage.removeItem("ocirenegotnemacro");
+    localStorage.removeItem("businessId");
     return next(true);
   }
    else if(!estaAutenticacao() ){

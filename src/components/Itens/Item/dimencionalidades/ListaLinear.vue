@@ -1,11 +1,11 @@
 <template>
   <v-expansion-panels focusable>
     <v-expansion-panel v-for="(item, i) in obterItensUnitarios" :key="i">
-      <v-expansion-panel-header>{{item.nome}}</v-expansion-panel-header>
+      <v-expansion-panel-header><h2>  {{ item.nome }}</h2> <h4>Tipo: {{ item.tipoItem.descricao}} </h4> </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-row>
           <v-col cols="6">
-            <edicao-item-unitario :itemEdicao="item" ></edicao-item-unitario>
+            <edicao-item-linear :itemEdicao="item" ></edicao-item-linear>
             <h3 class="text-center">Editar</h3></v-col>
           <v-col cols="6">
             <v-btn text><v-icon x-large @click="excluirItem(item.id)">mdi-trash-can-outline</v-icon> </v-btn>
@@ -24,20 +24,20 @@ import { StoreNamespaces } from "@/store";
 import { ItensActionTypes } from "@/store/Item/actions";
 import { Vue, Component } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import EdicaoItemUnitario from "./EdicaoItemUnitario.vue"; 
+import EdicaoItemLinear from "./EdicaoItemLinear.vue";
 
 const item = namespace(StoreNamespaces.ITEM);
 @Component({
   components: {
-    EdicaoItemUnitario,
+    EdicaoItemLinear,
   }
   })
-export default class ListaUnidade extends Vue {
+export default class Listalinear extends Vue {
   
   @item.Action(ItensActionTypes.REMOVER_ITEM)
   public removerItem!:(id: number) => Promise<void>
 
-  public get obterItensLinear(){
+  public get obterItensUnitarios(){
     const intens = this.itens.filter(i=>i.dimencaoId === Dimencao.Comprimento);
     return intens;
   }
