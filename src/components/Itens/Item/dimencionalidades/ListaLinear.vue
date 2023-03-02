@@ -5,7 +5,7 @@
       <v-expansion-panel-content>
         <v-row>
           <v-col cols="6">
-            <edicao-item-linear :itemEdicao="item" ></edicao-item-linear>
+            <edicao-item :itemEdicao="item" ></edicao-item>
             <h3 class="text-center">Editar</h3></v-col>
           <v-col cols="6">
             <v-btn text><v-icon x-large @click="excluirItem(item.id)">mdi-trash-can-outline</v-icon> </v-btn>
@@ -24,12 +24,12 @@ import { StoreNamespaces } from "@/store";
 import { ItensActionTypes } from "@/store/Item/actions";
 import { Vue, Component } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import EdicaoItemLinear from "./EdicaoItemLinear.vue";
+import EdicaoItem from "../EdicaoItem.vue";
 
 const item = namespace(StoreNamespaces.ITEM);
 @Component({
   components: {
-    EdicaoItemLinear,
+    EdicaoItem,
   }
   })
 export default class Listalinear extends Vue {

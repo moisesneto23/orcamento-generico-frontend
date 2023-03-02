@@ -1,5 +1,6 @@
 import  {AppHttpAxios}  from '@/axios/AppHttpAxios';
 import TipoModel from '@/Model/Itens/TipoModel';
+import store from '@/store';
 import { Inject } from 'typescript-ioc';
 
 export class TipoRepository {
@@ -17,11 +18,11 @@ export class TipoRepository {
     }
 
     public async salvarTipo(Tipo: TipoModel): Promise<any> {
-        const result = await this.$http.post('TipoItem', Tipo);
+        const result = await this.$http.post(`TipoItem/${this.idEmpresa}`, Tipo);
     }
 
     public async editarTipo(Tipo: TipoModel): Promise<TipoModel> {     
-        const result = await this.$http.patch('TipoItem', Tipo);
+        const result = await this.$http.patch(`TipoItem/${this.idEmpresa}`, Tipo);
         return result.data;
     }
 

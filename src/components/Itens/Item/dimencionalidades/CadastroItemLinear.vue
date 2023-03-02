@@ -4,7 +4,7 @@
       <v-dialog v-model="dialogItem" persistent max-width="800px">
         <v-card>
           <v-card-title>
-            <span class="text-h5">Criar Item de Cpmprimeto</span>
+            <span class="text-h5">Criar Item de Comprimento</span>
           </v-card-title>
           <v-card-text>
             <v-container>

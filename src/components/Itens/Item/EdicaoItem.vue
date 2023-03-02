@@ -68,7 +68,7 @@ import ItemModel from "@/Model/Itens/ItemModel";
 const item = namespace(StoreNamespaces.ITEM);
 
 @Component({})
-export default class EdicaoItemUnitario extends Vue {
+export default class EdicaoItem extends Vue {
   public dialog = false;
 
  @item.Action(ItensActionTypes.EDITAR_ITEM)
