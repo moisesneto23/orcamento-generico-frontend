@@ -138,6 +138,5 @@ export default class CadastroItemPerimetro extends Vue {
     return this.tipos.map((c)=>c.descricao);
   }
   public dialogItem = false;
-  public direcaoCalculo = ['altura','largura','profundidade']
 }
 </script>

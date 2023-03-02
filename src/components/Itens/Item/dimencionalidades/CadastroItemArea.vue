@@ -4,7 +4,7 @@
       <v-dialog v-model="dialogItem" persistent max-width="800px">
         <v-card>
           <v-card-title>
-            <span class="text-h5">Criar Item de Comprimento</span>
+            <span class="text-h5">Criar Item de Área</span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -20,7 +20,7 @@
 
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
-                    label="Valor de compra da barra"
+                    label="Valor de compra do metro quadrado"
                     hint="custo de compra do item"
                      v-model="valorCompraStr"
                   ></v-text-field>
@@ -44,8 +44,8 @@
                 </v-col>
               <v-col cols="12" sm="6">
                   <v-select
-                    :items="direcaoCauculoPerimetro"
-                    label="Selecione a direçao de calculo do perimetro*"
+                    :items="calculoArea"
+                    label="Selecione a direçao de calculo*"
                     required
                     v-model="selectDirecaoCauculo"
                   ></v-select>
@@ -88,13 +88,13 @@ import { namespace } from "vuex-class";
 const item = namespace(StoreNamespaces.ITEM);
 
 @Component({})
-export default class CadastroItemUnitario extends Vue {
+export default class CadastroItemArea extends Vue {
   @item.Action(ItensActionTypes.SALVAR_ITEM)
   public salvaItem!:(item: ItemModel) => Promise<any>;
 
   @item.State
  private tipos!: TipoModel[];
-  public direcaoCauculoPerimetro = ['Largura e altura',  'Altura e comprimento', 'Comprimento e largura'];
+  public calculoArea = ['Largura e altura',  'Altura e comprimento', 'Comprimento e largura'];
   public item = new ItemModel();
   public selecuinaIdSelect(){
   this.idSelect = this.tipos.find(x=>x.descricao == this.select)?.id;
@@ -107,15 +107,15 @@ export default class CadastroItemUnitario extends Vue {
 
   public async salvarItem(){
     switch (this.selectDirecaoCauculo) {
-      case 'Largura e altura': this.item.dimencaoId = Dimencao.PerimetroLarguraAltura;
+      case 'Largura e altura': this.item.dimencaoId = Dimencao.AreaLarguraAltura;
         break;
-      case 'Altura e comprimento': this.item.dimencaoId = Dimencao.PerimetroComprimentoAltura;
+      case 'Altura e comprimento': this.item.dimencaoId = Dimencao.AreaAlturaComprimento;
         break;
-      case 'Comprimento e largura': this.item.dimencaoId = Dimencao.PerimetroLarguraComprimento;
+      case 'Comprimento e largura': this.item.dimencaoId = Dimencao.AreaLarguraComprimento;
         break;
     }
-    this.item.direcaoCalculoId = DirecaoCalculo.Indefinida;
     this.item.tipoItemId = this.idSelect || 0;
+    this.item.direcaoCalculoId = DirecaoCalculo.Indefinida;
     this.item.valorCompra = parseFloat(this.valorCompraStr);
     this.item.valorVenda = parseFloat(this.valorVendaStr);
     await this.salvaItem(this.item).then(()=>{
@@ -127,6 +127,5 @@ export default class CadastroItemUnitario extends Vue {
     return this.tipos.map((c)=>c.descricao);
   }
   public dialogItem = false;
-  public direcaoCalculo = ['altura','largura','profundidade']
 }
 </script>
