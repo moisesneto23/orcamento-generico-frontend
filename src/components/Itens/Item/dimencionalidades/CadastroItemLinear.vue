@@ -96,7 +96,7 @@ import { namespace } from "vuex-class";
 const item = namespace(StoreNamespaces.ITEM);
 
 @Component({})
-export default class CadastroItemUnitario extends Vue {
+export default class CadastroItemLinear extends Vue {
   @item.Action(ItensActionTypes.SALVAR_ITEM)
   public salvaItem!:(item: ItemModel) => Promise<any>;
 
